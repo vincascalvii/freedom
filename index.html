@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<!-- UNICODE -->
+	<meta charset="utf-8">
+
+	<!-- COMPABILITY -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<!-- VIEWPORT -->
+	<meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=5.0,width=device-width">
+
+	<!-- THEME COLOUR -->
+	<meta name="theme-color" content="#333">
+
+	<!-- BASE URL -->
+	<base href="https://vincascalvii.github.io">
+
+	<!-- TITLE -->
+	<title>Freedom Cry - Web Novel - Calvin Lam</title>
+
+	<!-- META DATA -->
+	<meta name="description" content="Valhalla, a wonderful world full of fantasy creatures where the seven kingdoms live in peace... until 'they' arrive...">
+	<meta name="author" content="Calvin Lam">
+
+	<!-- FONTS -->
+	<link rel="preload" as="font" type="font/woff2" href="/fonts/poppins-v12-latin-regular.woff2" crossorigin="anonymous">
+	<link rel="preload" as="font" type="font/woff2" href="/fonts/poppins-v12-latin-500.woff2" crossorigin="anonymous">
+	<link rel="preload" as="font" type="font/woff2" href="/fonts/poppins-v12-latin-700.woff2" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="/css/fonts.css?version1">
+
+	<!-- CRITICAL CSS -->
+	<link rel="stylesheet" type="text/css" href="/freedom/css/critical.css">
+
+	<!-- NON-CRITICAL CSS (ASYNC) -->
+	<link rel="preload" href="/freedom/css/non-critical.css" as="style" 
+		  onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="/freedom/css/non-critical.css"></noscript>
+	<script>
+		/*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+		!function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
+	</script>
+
+	<!-- FAVICONS -->
+	<link rel="apple-touch-icon" sizes="180x180" href="/freedom/img/favicons/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/freedom/img/favicons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/freedom/img/favicons/favicon-16x16.png">
+	<link rel="manifest" href="/freedom/img/favicons/site.webmanifest">
+
+    <!-- FACEBOOK OPENGRAPH -->
+    <meta property="og:site_name" content="Calvin Lam">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/freedom/img/others/opengraph.jpg">
+    <meta property="og:url" content="https://vincascalvii.github.io/freedom">
+    <meta property="og:title" content="Freedom Cry - Web Novel - Calvin Lam">
+    <meta property="og:description" content="Valhalla, a wonderful world full of fantasy creatures where the seven kingdoms live in peace... until 'they' arrive...">
+
+    <!-- TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="/freedom/img/others/twitter.jpg"> 
+    <meta name="twitter:url" content="https://vincascalvii.github.io/freedom">
+    <meta name="twitter:title" content="Freedom Cry - Web Novel - Calvin Lam">
+    <meta name="twitter:description" content="Valhalla, a wonderful world full of fantasy creatures where the seven kingdoms live in peace... until 'they' arrive...">
+
+</head>
+
+
+
+<body>
+
+	<!-- HEADER -->
+	<header class="header">
+		<div class="container">
+			<a href="/" class="back" aria-label="Return to home page">
+				<span class="icon">&#8592;</span>
+				<span class="text">Back</span>
+			</a>
+			<h1 class="title">Freedom Cry</h1>
+			<h2 class="sub-title">Web Novel</h2>
+		</div>
+	</header>
+
+	<main>
+		<ul>
+			<li>
+				<a href="/freedom/chapter-1" aria-label="Go to chapter 1">Chapter 1</a>
+			</li>
+			<li>
+				<a href="/" aria-label="Go to chapter 2">Chapter 2</a>
+			</li>
+			<li>
+				<a href="/" aria-label="Go to chapter 3">Chapter 3</a>
+			</li>
+		</ul>
+	</main>
+
+	<!-- FOOTER -->
+	<footer class="footer">
+		<div class="container">
+			<p class="copyright">Copyright &copy; <span id="copyright-year"></span> Calvin Lam</p>
+		</div>
+	</footer>
+
+	<script type="text/javascript">
+		document.getElementById('copyright-year').innerHTML = new Date().getFullYear();
+	</script>
+
+</body>
+
+</html>
