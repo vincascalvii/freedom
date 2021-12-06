@@ -68,7 +68,7 @@ a {
 }
 
 main.container {
-	min-height: calc(100vh - 215px);
+	min-height: calc(100vh - 285px);
 }
 
 .chapter-list {
@@ -139,6 +139,7 @@ main.container {
 
 	main.container {
 		width: 700px;
+		min-height: calc(100vh - 215px);
 	}
 
 	.chapter-list {
