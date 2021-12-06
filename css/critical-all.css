@@ -98,6 +98,11 @@ main.container {
 			box-shadow: 0 2px 10px -5px rgba(0,0,0,.4);
 }
 
+.chapter-list .chapter-link.disabled {
+	opacity: .5;
+	pointer-events: none;
+}
+
 .chapter-list .chapter-number {
 	color: #727272;
 	font-size: 1.4rem;

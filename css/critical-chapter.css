@@ -138,6 +138,11 @@ a {
 	#back-to-top {
 		bottom: 40px;
 		right: 40px;
+		transition: .2s ease-in-out;
+	}
+
+	#back-to-top:hover {
+		background-color: #145a9d;
 	}
 
 }
