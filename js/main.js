@@ -17,7 +17,7 @@ if ( number != '' & number != null ) {
 	})
 	.then( function(data) {
 		if ( data ) document.getElementById('main').innerHTML = data[0]['html'];
-	}
+	})
 	.catch( function(error) {
 		console.log('Fetch error: ', error);
 	});
