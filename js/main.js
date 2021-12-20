@@ -27,7 +27,7 @@ if ( number != '' & number != null ) {
 if ( number != '' & number != null && name != '' && name != null ) {
 
 	// Populate the header navigation
-	document.getElementById('chap-number').innerText = number;
+	document.getElementById('chap-number').innerText = 'Chapter ' + number;
 	document.getElementById('chap-name').innerText = name;
 
 	// Get the current full URL
