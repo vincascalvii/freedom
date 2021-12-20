@@ -8,18 +8,19 @@
 var number = getParameter('number');
 var name = getParameter('name');
 
-// If chapter number is not empty, build the iframe
+// If chapter number is not empty, fetch the chapter content
 if ( number != '' & number != null ) {
-
-	// Get the iframe source based on the chapter number
-	var source = getSource(number);
-
-	// If iframe source exists, create an iframe and append it
-	if ( source ) {
-		var iframe = document.createElement('iframe');
-			iframe.src = source;
-		document.getElementById('main').appendChild(iframe);
+	fetch('/freedom/data/' + number + '.json')
+	.then( function(response) {
+		if (!response.ok) throw new Error("HTTP error " + response.status);
+	    return response.json();
+	})
+	.then( function(data) {
+		if ( data ) document.getElementById('main').innerHTML = data[0]['html'];
 	}
+	.catch( function(error) {
+		console.log('Fetch error: ', error);
+	});
 }
 
 // If chapter number and name both exist, populate the values to below
@@ -100,23 +101,3 @@ document.getElementById('back-to-top').addEventListener('click', function() {
 		behavior: 'smooth'
 	});
 }, false);
-
-/* =============================================================================
-
-    GET SOURCE ( IFRAME URL )
-
-    Get the chapter number and return the iframe source to call Google Docs
-    for the corresponding document
-
-============================================================================= */
-
-function getSource(chapter) {
-	switch(chapter) {
-		case '1':
-			return 'https://gdoc.pub/doc/e/2PACX-1vTwXcyIdnR5Qz4uHdo90G5mwamq9NB6sVBFcSw9Amzzml9YUEFDiWPP6vU2z-vfyf86OTytVS1OuORK#?embedded=true';
-			break;
-		default:
-			return false;
-			break;
-	}
-}
