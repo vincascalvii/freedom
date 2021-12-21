@@ -66,11 +66,25 @@ if ( number != '' & number != null ) {
 		console.log('Fetch error: ', error);
 	});
 
-	// Generate previous and next chapter link
-	document.getElementById('nav-prev').href = 
-		'/freedom/chapter?number=' + ( parseInt(number) - 1 ).toString();
-	document.getElementById('nav-prev').href = 
-		'/freedom/chapter?number=' + ( parseInt(number) + 1 ).toString();
+	// Convert number to integer
+	var numberInt = parseInt(number);
+
+	// Generate previous chapter link if the user is at least on chapter number 2
+	if ( numberInt > 1 ) {
+		document.getElementById('nav-prev').href = 
+			'/freedom/chapter?number=' + ( numberInt - 1 ).toString();
+	} else {
+		document.getElementById('nav-prev').classList.add('disabled');
+	}
+
+	// Generate next chapter link unless the user is at the latest chapter
+	if ( numberInt < 3 ) {
+		document.getElementById('nav-next').href = 
+			'/freedom/chapter?number=' + ( numberInt + 1 ).toString();
+	} else {
+		document.getElementById('nav-next').classList.add('disabled');
+	}
+
 } else {
 	document.getElementById('main').innerHTML = 
 		'<p>Sorry! This chapter has not been released or does not exist.</p>';
