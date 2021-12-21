@@ -4,48 +4,76 @@
 
 ============================================================================= */
 
-// Get the chapter number and name from URL
+// Get the chapter number from URL
 var number = getParameter('number');
-var name = getParameter('name');
 
 // If chapter number is not empty, fetch the chapter content
 if ( number != '' & number != null ) {
 	fetch('/freedom/data/' + number + '.json')
+
+	// Validate the response
 	.then( function(response) {
 		if (!response.ok) throw new Error("HTTP error " + response.status);
 	    return response.json();
 	})
+
+	// Check if data exists
 	.then( function(data) {
-		if ( data ) document.getElementById('main').innerHTML = data[0]['html'];
+		if ( data ) {
+
+			// Get the chapter name
+			var name = data[0]['name'];
+
+			// Populate the header navigation
+			document.getElementById('chap-number').innerText = 'Chapter ' + number;
+			document.getElementById('chap-name').innerText = name;
+
+			// Generate the chapter content in HTML
+			document.getElementById('main').innerHTML = data[0]['html'];
+
+			// Generate the title and meta description
+			document.getElementsByTagName('title')[0].content = 
+				'Chapter ' + number + ' - ' + name + ' | Freedom Cry - Web Novel - Calvin Lam';
+			document.querySelector('meta[name="description"]').content =
+				'Read Chapter ' + number + ', ' + name + 
+				' from the fantasy web novel Freedom Cry on this site. ' +
+				'Freedom Cry tells a story about the several adventures in a land named Valhalla.';
+
+			// Get the current full URL
+			var currentURL = window.location.href;
+
+			// Populate Facebook OpenGraph metadata
+			document.querySelector('meta[property="og:url"]').content = currentURL;
+			document.querySelector('meta[property="og:title"]').content = 
+				'Chapter ' + number + ' - ' + name + ' | Freedom Cry - Web Novel - Calvin Lam';
+			document.querySelector('meta[property="og:description"]').content =
+				'Read Chapter ' + number + ', ' + name + 
+				' from the fantasy web novel Freedom Cry on this site. ' +
+				'Freedom Cry tells a story about the several adventures in a land named Valhalla.';
+
+			// Populate Twitter card metadata
+			document.querySelector('meta[name="twitter:url"]').content = currentURL;
+			document.querySelector('meta[name="twitter:title"]').content = 
+				'Chapter ' + number + ' - ' + name + ' | Freedom Cry - Web Novel - Calvin Lam';
+			document.querySelector('meta[name="twitter:description"]').content =
+				'Read Chapter ' + number + ', ' + name + 
+				' from the fantasy web novel Freedom Cry on this site. ' +
+				'Freedom Cry tells a story about the several adventures in a land named Valhalla.';
+
+		}
 	})
 	.catch( function(error) {
 		console.log('Fetch error: ', error);
 	});
-}
 
-// If chapter number and name both exist, populate the values to below
-if ( number != '' & number != null && name != '' && name != null ) {
-
-	// Populate the header navigation
-	document.getElementById('chap-number').innerText = 'Chapter ' + number;
-	document.getElementById('chap-name').innerText = name;
-
-	// Get the current full URL
-	var currentURL = window.location.href;
-
-	// Populate Facebook OpenGraph metadata
-	document.querySelector('meta[property="og:url"]').content = currentURL;
-	document.querySelector('meta[property="og:title"]').content = 
-		'Chapter ' + number + ' - ' + name + ' | Freedom Cry - Web Novel - Calvin Lam';
-	document.querySelector('meta[property="og:description"]').content =
-		'Read Chapter ' + number + ', ' + name + ' from the fantasy web novel Freedom Cry on this site. Freedom Cry tells a story about the several adventures in a land named Valhalla.';
-
-	// Populate Twitter card metadata
-	document.querySelector('meta[name="twitter:url"]').content = currentURL;
-	document.querySelector('meta[name="twitter:title"]').content = 
-		'Chapter ' + number + ' - ' + name + ' | Freedom Cry - Web Novel - Calvin Lam';
-	document.querySelector('meta[name="twitter:description"]').content =
-		'Read Chapter ' + number + ', ' + name + ' from the fantasy web novel Freedom Cry on this site. Freedom Cry tells a story about the several adventures in a land named Valhalla.';
+	// Generate previous and next chapter link
+	document.getElementById('nav-prev').href = 
+		'/freedom/chapter?number=' + ( parseInt(number) - 1 ).toString();
+	document.getElementById('nav-prev').href = 
+		'/freedom/chapter?number=' + ( parseInt(number) + 1 ).toString();
+} else {
+	document.getElementById('main').innerHTML = 
+		'<p>Sorry! This chapter has not been released or does not exist.</p>';
 }
 
 /* =============================================================================
