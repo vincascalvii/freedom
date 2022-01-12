@@ -22,15 +22,15 @@ if ( id != '' & id != null ) {
 	.then( function(data) {
 
 			// Get the chapter number and name
-			var number = data[0]['title'].split(' ')[0];
-			var name = data[0]['title'].split(' ')[1];
+			var number = data['title'].substr(0, data['title'].indexOf(' '));
+			var name = data['title'].substr(data['title'].indexOf(' ') + 1);
 
 			// Populate the header navigation
 			document.querySelector('#chap-number').innerText = number;
 			document.querySelector('#chap-name').innerText = name;
 
 			// Generate the chapter content in HTML
-			document.querySelector('#main').innerHTML = data[0]['content'];
+			document.querySelector('#main').innerHTML = data['content'];
 
 			// Generate the title and meta description
 			document.querySelectorAll('title')[0].content = 

@@ -28,8 +28,8 @@ fetch(fetchURL)
 	for ( var i = 0; i < chapters.length; i++ ) {
 
 		// Get the chapter number and name
-		var cNumber = chapters[i]['title'].split(' ')[0];
-		var cName = chapters[i]['title'].split(' ')[1];
+		var cNumber = chapters[i]['title'].substr(0, chapters[i]['title'].indexOf(' '));
+		var cName = chapters[i]['title'].substr(chapters[i]['title'].indexOf(' ') + 1);
 
 		// Build the chapter number element
 		var number = document.createElement('span');
