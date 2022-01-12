@@ -5,13 +5,14 @@
 ============================================================================= */
 
 // Get the chapter number from URL
-var number = getParameter('number');
+var id = getParameter('id');
 
 // If chapter number is not empty, fetch the chapter content
-if ( number != '' & number != null ) {
-	fetch('/freedom/data/' + number + '.json')
+if ( id != '' & id != null ) {
+	fetch('https://public-api.wordpress.com/rest/v1.1/sites/vincascalvii.wordpress.com/posts/' 
+		+ id + '?fields=ID,title,content')
 
-	// Validate the response
+	// Validate the response and return it as JSON
 	.then( function(response) {
 		if (!response.ok) throw new Error("HTTP error " + response.status);
 	    return response.json();
@@ -19,20 +20,20 @@ if ( number != '' & number != null ) {
 
 	// Check if data exists
 	.then( function(data) {
-		if ( data ) {
 
-			// Get the chapter name
-			var name = data[0]['name'];
+			// Get the chapter number and name
+			var number = data[0]['title'].split(' ')[0];
+			var name = data[0]['title'].split(' ')[1];
 
 			// Populate the header navigation
-			document.getElementById('chap-number').innerText = 'Chapter ' + number;
-			document.getElementById('chap-name').innerText = name;
+			document.querySelector('#chap-number').innerText = number;
+			document.querySelector('#chap-name').innerText = name;
 
 			// Generate the chapter content in HTML
-			document.getElementById('main').innerHTML = data[0]['html'];
+			document.querySelector('#main').innerHTML = data[0]['content'];
 
 			// Generate the title and meta description
-			document.getElementsByTagName('title')[0].content = 
+			document.querySelectorAll('title')[0].content = 
 				'Chapter ' + number + ' - ' + name + ' | Freedom Cry - Web Novel - Calvin Lam';
 			document.querySelector('meta[name="description"]').content =
 				'Read Chapter ' + number + ', ' + name + 
@@ -60,33 +61,31 @@ if ( number != '' & number != null ) {
 				' from the fantasy web novel Freedom Cry on this site. ' +
 				'Freedom Cry tells a story about the several adventures in a land named Valhalla.';
 
-		}
 	})
+
+	// In case of error
 	.catch( function(error) {
 		console.log('Fetch error: ', error);
 	});
 
 	// Convert number to integer
-	var numberInt = parseInt(number);
+	var prevID = getParameter('prev');
+	var nextID = getParameter('next');
 
 	// Generate previous chapter link if the user is at least on chapter number 2
-	if ( numberInt > 1 ) {
-		document.getElementById('nav-prev').href = 
-			'/freedom/chapter?number=' + ( numberInt - 1 ).toString();
-	} else {
-		document.getElementById('nav-prev').classList.add('disabled');
-	}
+	if ( prevID != '0' ) 
+		document.querySelector('#nav-prev').href = '/freedom/chapter?id=' + prevID;
+	else 
+		document.querySelector('#nav-prev').classList.add('disabled');
 
 	// Generate next chapter link unless the user is at the latest chapter
-	if ( numberInt < 3 ) {
-		document.getElementById('nav-next').href = 
-			'/freedom/chapter?number=' + ( numberInt + 1 ).toString();
-	} else {
-		document.getElementById('nav-next').classList.add('disabled');
-	}
+	if ( nextID != '0' ) 
+		document.querySelector('#nav-next').href = '/freedom/chapter?number=' + nextID;
+	else
+		document.querySelector('#nav-next').classList.add('disabled');
 
 } else {
-	document.getElementById('main').innerHTML = 
+	document.querySelector('#main').innerHTML = 
 		'<p>Sorry! This chapter has not been released or does not exist.</p>';
 }
 
@@ -129,7 +128,7 @@ function getParameter() {
 
 ============================================================================= */
 
-document.getElementById('copyright-year').innerHTML = new Date().getFullYear();
+document.querySelector('#copyright-year').innerHTML = new Date().getFullYear();
 
 /* =============================================================================
 
@@ -137,7 +136,7 @@ document.getElementById('copyright-year').innerHTML = new Date().getFullYear();
 
 ============================================================================= */
 
-document.getElementById('back-to-top').addEventListener('click', function() {
+document.querySelector('#back-to-top').addEventListener('click', function() {
 	window.scrollTo({
 		top: 0, 
 		behavior: 'smooth'
