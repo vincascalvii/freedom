@@ -19,7 +19,7 @@ fetch(fetchURL)
 
 // Handle the data
 .then(function (data) {
-	
+
 	var chapters = data['posts'];
 	var container = document.querySelector('#chapter-list');
 
@@ -27,7 +27,7 @@ fetch(fetchURL)
 
  		var name = document.createElement('span');
  			name.classList.add('chapter-name');
- 			name.innerHTML = chapters['title'];
+ 			name.innerHTML = chapters[i]['title'];
 
  		var link = document.createElement('a');
 			link.classList.add('chapter-link');
