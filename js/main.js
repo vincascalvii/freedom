@@ -41,13 +41,11 @@ fetch(fetchURL)
  			name.classList.add('chapter-name');
  			name.innerHTML = cName;
 
- 		// Assign the previous chapter and next chapter IDs
- 		var prevID = chapters[i - 1]['ID'];
- 		var nextID = chapters[i + 1]['ID'];
+ 		// If current iteration is not the first one, get the previous chapter ID
+ 		var prevID = ( i > 0 ) ? chapters[i - 1]['ID'] : '0';
 
- 		// If they don't exist, simply treat them as zero
- 		if ( typeof prevID === 'undefined' ) prevID = '0';
- 		if ( typeof nextID === 'undefined' ) nextID = '0';
+ 		// If the current iteration not the last one, get the next chapter ID
+ 		var nextID = ( i < ( chapters.length - 1 ) ) ? chapters[i + 1]['ID'] : '0';
 
  		// Build the chapter link element with both number and name
  		var link = document.createElement('a');
