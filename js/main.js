@@ -5,7 +5,8 @@
 ============================================================================= */
 
 // Pass the page to fetch URL
-var fetchURL = 'https://public-api.wordpress.com/rest/v1.1/sites/vincascalvii.wordpress.com/posts/';
+var fetchURL = 
+'https://public-api.wordpress.com/rest/v1.1/sites/vincascalvii.wordpress.com/posts/?fields=title&order_by=id';
 
 // Categories 2 here stands for COAU
 fetch(fetchURL)
@@ -18,28 +19,25 @@ fetch(fetchURL)
 
 // Handle the data
 .then(function (data) {
-	var chapters = data.length;
+	
+	var chapters = data['posts'];
 	var container = document.querySelector('#chapter-list');
 
-	for ( var i = 0; i < chapters; i++ ) {
+	for ( var i = 0; i < chapters.length; i++ ) {
 
-		console.log(data[i]);
+ 		var name = document.createElement('span');
+ 			name.classList.add('chapter-name');
+ 			name.innerHTML = chapters['title'];
+
+ 		var link = document.createElement('a');
+			link.classList.add('chapter-link');
+			link.setAttribute('aria-label', 'Go to');
+			link.appendChild(name);
 
 		var item = document.createElement('li');
 			item.classList.add('chapter-item');
+			item.appendChild(link);
 
-		var link = document.createElement('a');
-			link.classList.add('chapter-link');
-			link.setAttribute('aria-label', 'Go to');
-
-// 		var 
-
-// <li class="chapter-item">
-// 				<a href="/freedom/chapter?number=1" class="chapter-link" aria-label="Go to chapter 1">
-// 					<span class="chapter-number">Chapter 1</span>
-// 					<span class="chapter-name">Hellspawn</span>
-// 				</a>
-// 			</li>
-
+		container.appendChild(item);
 	}
 });
