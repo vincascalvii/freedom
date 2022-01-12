@@ -85,38 +85,7 @@
 	</header>
 
 	<main class="container">
-		<ul class="chapter-list">
-			<li class="chapter-item">
-				<a href="/freedom/chapter?number=1" class="chapter-link" aria-label="Go to chapter 1">
-					<span class="chapter-number">Chapter 1</span>
-					<span class="chapter-name">Hellspawn</span>
-				</a>
-			</li>
-			<li class="chapter-item">
-				<a href="/freedom/chapter?number=2" class="chapter-link" aria-label="Go to chapter 2">
-					<span class="chapter-number">Chapter 2</span>
-					<span class="chapter-name">Mercury</span>
-				</a>
-			</li>
-			<li class="chapter-item">
-				<a href="/freedom/chapter?number=3" class="chapter-link" aria-label="Go to chapter 3">
-					<span class="chapter-number">Chapter 3</span>
-					<span class="chapter-name">Dawnbringers</span>
-				</a>
-			</li>
-			<li class="chapter-item">
-				<a href="/freedom/chapter?number=4" class="chapter-link" aria-label="Go to chapter 4">
-					<span class="chapter-number">Chapter 4</span>
-					<span class="chapter-name">Orphanage</span>
-				</a>
-			</li>
-			<li class="chapter-item">
-				<a href="/freedom" class="chapter-link disabled" aria-label="Go to chapter 5">
-					<span class="chapter-number">Chapter 5</span>
-					<span class="chapter-name">Terrorhand</span>
-				</a>
-			</li>
-		</ul>
+		<ul id="chapter-list" class="chapter-list"></ul>
 	</main>
 
 	<!-- FOOTER -->
@@ -129,6 +98,8 @@
 	<script type="text/javascript">
 		document.getElementById('copyright-year').innerHTML = new Date().getFullYear();
 	</script>
+
+	<script src="/freedom/js/main.js"></script>
 
 </body>
 
