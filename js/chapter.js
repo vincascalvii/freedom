@@ -67,14 +67,14 @@ if ( id != '' & id != null ) {
 	});
 
 	// Convert ID to integer
-	intID = parseInt(id);
+	var intID = parseInt(id);
 
 	// Generate previous chapter link if the user is at least on chapter number 2
 	if ( intID > 1 ) {
 		var prevID = intID--;
 		document.querySelector('#nav-prev').href = '/freedom/story/chapter?id=' + prevID;
 	} else {
-		document.querySelector('#nav-prev').classList.add('disabled');
+		document.querySelector('#nav-prev').disabled = 'disabled';
 	}
 
 	// Generate next chapter link
