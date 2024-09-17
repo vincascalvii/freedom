@@ -9,30 +9,34 @@ var id = getParameter('id');
 
 // If chapter number is not empty, fetch the chapter content
 if ( id != '' & id != null ) {
+	fetch('https://public-api.wordpress.com/rest/v1.1/sites/vincascalvii.wordpress.com/posts/' 
+		+ id + '?fields=ID,title,content')
 
-	// Fetch the data
-	fetch('/freedom/data/story/' + id + '.json')
+	// Validate the response and return it as JSON
 	.then( function(response) {
 		if (!response.ok) throw new Error("HTTP error " + response.status);
 	    return response.json();
 	})
+
+	// Check if data exists
 	.then( function(data) {
 
-			// Get the chapter title
-			var title = data['title'];
+			// Get the chapter number and name
+			var number = data['title'].substr(0, data['title'].indexOf(' '));
+			var name = data['title'].substr(data['title'].indexOf(' ') + 1);
 
 			// Populate the header navigation
-			document.querySelector('#chap-number').innerText = id;
-			document.querySelector('#chap-name').innerText = title;
+			document.querySelector('#chap-number').innerText = number;
+			document.querySelector('#chap-name').innerText = name;
 
 			// Generate the chapter content in HTML
-			document.querySelector('#main').innerHTML = data['html'];
+			document.querySelector('#main').innerHTML = data['content'];
 
 			// Generate the title and meta description
 			document.querySelectorAll('title')[0].content = 
-				'Chapter ' + number + ' - ' + title + ' | Freedom Cry - Web Novel - Calvin Lam';
+				'Chapter ' + number + ' - ' + name + ' | Freedom Cry - Web Novel - Calvin Lam';
 			document.querySelector('meta[name="description"]').content =
-				'Read Chapter ' + number + ', ' + title + 
+				'Read Chapter ' + number + ', ' + name + 
 				' from the fantasy web novel Freedom Cry on this site. ' +
 				'Freedom Cry tells a story about the several adventures in a land named Valhalla.';
 
@@ -42,18 +46,18 @@ if ( id != '' & id != null ) {
 			// Populate Facebook OpenGraph metadata
 			document.querySelector('meta[property="og:url"]').content = currentURL;
 			document.querySelector('meta[property="og:title"]').content = 
-				'Chapter ' + number + ' - ' + title + ' | Freedom Cry - Web Novel - Calvin Lam';
+				'Chapter ' + number + ' - ' + name + ' | Freedom Cry - Web Novel - Calvin Lam';
 			document.querySelector('meta[property="og:description"]').content =
-				'Read Chapter ' + number + ', ' + title + 
+				'Read Chapter ' + number + ', ' + name + 
 				' from the fantasy web novel Freedom Cry on this site. ' +
 				'Freedom Cry tells a story about the several adventures in a land named Valhalla.';
 
 			// Populate Twitter card metadata
 			document.querySelector('meta[name="twitter:url"]').content = currentURL;
 			document.querySelector('meta[name="twitter:title"]').content = 
-				'Chapter ' + number + ' - ' + title + ' | Freedom Cry - Web Novel - Calvin Lam';
+				'Chapter ' + number + ' - ' + name + ' | Freedom Cry - Web Novel - Calvin Lam';
 			document.querySelector('meta[name="twitter:description"]').content =
-				'Read Chapter ' + number + ', ' + title + 
+				'Read Chapter ' + number + ', ' + name + 
 				' from the fantasy web novel Freedom Cry on this site. ' +
 				'Freedom Cry tells a story about the several adventures in a land named Valhalla.';
 
@@ -61,9 +65,7 @@ if ( id != '' & id != null ) {
 
 	// In case of error
 	.catch( function(error) {
-		console.log('Fetch error: ' + error);
-		document.querySelector('#main').innerHTML = 
-			'<p>Sorry! This chapter has not been released or does not exist.</p>';
+		console.log('Fetch error: ', error);
 	});
 
 	// Convert number to integer
@@ -71,13 +73,16 @@ if ( id != '' & id != null ) {
 	var nextID = getParameter('next');
 
 	// Generate previous chapter link if the user is at least on chapter number 2
-	if ( id !== 0 ) 
-		document.querySelector('#nav-prev').href = '/freedom/story/chapter?id=' + ( id - 1 );
+	if ( prevID != '0' ) 
+		document.querySelector('#nav-prev').href = '/freedom/story/chapter?id=' + prevID;
 	else 
 		document.querySelector('#nav-prev').classList.add('disabled');
 
-	// Generate next chapter link
-	document.querySelector('#nav-next').href = '/freedom/story/chapter?id=' + ( id + 1 );
+	// Generate next chapter link unless the user is at the latest chapter
+	if ( nextID != '0' ) 
+		document.querySelector('#nav-next').href = '/freedom/story/chapter?id=' + nextID;
+	else
+		document.querySelector('#nav-next').classList.add('disabled');
 
 } else {
 	document.querySelector('#main').innerHTML = 
