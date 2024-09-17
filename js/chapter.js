@@ -71,14 +71,14 @@ if ( id != '' & id != null ) {
 console.log(intID);
 	// Generate previous chapter link if the user is at least on chapter number 2
 	if ( intID > 1 ) {
-		var prevID = intID--;
+		var prevID = intID - 1;console.log(prevID);
 		document.querySelector('#nav-prev').href = '/freedom/story/chapter?id=' + prevID;
 	} else {
 		document.querySelector('#nav-prev').classList.add('disabled');
 	}
 
 	// Generate next chapter link
-	var nextID = intID++;console.log(nextID);
+	var nextID = intID + 1;console.log(nextID);
 	document.querySelector('#nav-next').href = '/freedom/story/chapter?id=' + nextID;
 
 } else {
