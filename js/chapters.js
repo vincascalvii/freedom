@@ -25,7 +25,7 @@ fetch('/freedom/data/story/all.json')
 		// Build the chapter number element
 		var number = document.createElement('span');
  			number.classList.add('chapter-number');
- 			number.innerHTML = cNumber;
+ 			number.innerHTML = 'Ch.' + cNumber;
 
  		// Build the chapter name element
  		var name = document.createElement('span');

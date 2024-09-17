@@ -19,14 +19,14 @@ if ( id != '' & id != null ) {
 	.then( function(data) {
 
 			// Get the chapter title
-			var title = data['title'];
+			var title = data[0]['title'];
 
 			// Populate the header navigation
-			document.querySelector('#chap-number').innerText = id;
+			document.querySelector('#chap-number').innerText = 'Ch.' + id;
 			document.querySelector('#chap-name').innerText = title;
 
 			// Generate the chapter content in HTML
-			document.querySelector('#main').innerHTML = data['html'];
+			document.querySelector('#main').innerHTML = data[0]['html'];
 
 			// Generate the title and meta description
 			document.querySelectorAll('title')[0].content = 
