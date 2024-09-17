@@ -74,12 +74,12 @@ if ( id != '' & id != null ) {
 		var prevID = intID--;
 		document.querySelector('#nav-prev').href = '/freedom/story/chapter?id=' + prevID;
 	} else {
-		document.querySelector('#nav-prev').disabled = 'disabled';
+		document.querySelector('#nav-prev').classList.add('disabled');
 	}
 
 	// Generate next chapter link
 	var nextID = intID++;
-	document.querySelector('#nav-next').href = '/freedom/story/chapter?id=' + prevID;
+	document.querySelector('#nav-next').href = '/freedom/story/chapter?id=' + nextID;
 
 } else {
 	document.querySelector('#main').innerHTML = 
