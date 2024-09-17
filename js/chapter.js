@@ -30,9 +30,9 @@ if ( id != '' & id != null ) {
 
 			// Generate the title and meta description
 			document.querySelectorAll('title')[0].content = 
-				'Chapter ' + number + ' - ' + title + ' | Freedom Cry - Web Novel - Calvin Lam';
+				'Chapter ' + id + ' - ' + title + ' | Freedom Cry - Web Novel - Calvin Lam';
 			document.querySelector('meta[name="description"]').content =
-				'Read Chapter ' + number + ', ' + title + 
+				'Read Chapter ' + id + ', ' + title + 
 				' from the fantasy web novel Freedom Cry on this site. ' +
 				'Freedom Cry tells a story about the several adventures in a land named Valhalla.';
 
@@ -42,18 +42,18 @@ if ( id != '' & id != null ) {
 			// Populate Facebook OpenGraph metadata
 			document.querySelector('meta[property="og:url"]').content = currentURL;
 			document.querySelector('meta[property="og:title"]').content = 
-				'Chapter ' + number + ' - ' + title + ' | Freedom Cry - Web Novel - Calvin Lam';
+				'Chapter ' + id + ' - ' + title + ' | Freedom Cry - Web Novel - Calvin Lam';
 			document.querySelector('meta[property="og:description"]').content =
-				'Read Chapter ' + number + ', ' + title + 
+				'Read Chapter ' + id + ', ' + title + 
 				' from the fantasy web novel Freedom Cry on this site. ' +
 				'Freedom Cry tells a story about the several adventures in a land named Valhalla.';
 
 			// Populate Twitter card metadata
 			document.querySelector('meta[name="twitter:url"]').content = currentURL;
 			document.querySelector('meta[name="twitter:title"]').content = 
-				'Chapter ' + number + ' - ' + title + ' | Freedom Cry - Web Novel - Calvin Lam';
+				'Chapter ' + id + ' - ' + title + ' | Freedom Cry - Web Novel - Calvin Lam';
 			document.querySelector('meta[name="twitter:description"]').content =
-				'Read Chapter ' + number + ', ' + title + 
+				'Read Chapter ' + id + ', ' + title + 
 				' from the fantasy web novel Freedom Cry on this site. ' +
 				'Freedom Cry tells a story about the several adventures in a land named Valhalla.';
 

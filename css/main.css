@@ -69,6 +69,7 @@ a {
 
 main.container {
 	min-height: calc(100vh - 285px);
+	margin-block: 40px;
 }
 
 .block {

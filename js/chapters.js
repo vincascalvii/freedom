@@ -19,8 +19,8 @@ fetch('/freedom/data/story/all.json')
 	for ( var i = 0; i < data.length; i++ ) {
 
 		// Get the chapter number and name
-		var cNumber = data[i]['title'].substr(0, data[i]['title'].indexOf(' '));
-		var cName = data[i]['title'].substr(data[i]['title'].indexOf(' ') + 1);
+		var cNumber = data[i]['id'];
+		var cName = data[i]['title'];
 
 		// Build the chapter number element
 		var number = document.createElement('span');
@@ -35,7 +35,7 @@ fetch('/freedom/data/story/all.json')
  		// Build the chapter link element with both number and name
  		var link = document.createElement('a');
 			link.classList.add('chapter-link');
-			link.href = '/freedom/story/chapter?id=' + data[i]['ID'];
+			link.href = '/freedom/story/chapter?id=' + cNumber;
 			link.setAttribute('aria-label', 'Go to');
 			link.appendChild(number);
 			link.appendChild(name);
