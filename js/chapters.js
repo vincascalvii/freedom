@@ -12,6 +12,9 @@ fetch('/freedom/data/story/all.json')
 })
 .then(function(data) {
 
+	// Reverse the chapters so the latest one is at the top
+	data = data.reverse();
+
 	// Get the container
 	var container = document.querySelector('#chapter-list');
 

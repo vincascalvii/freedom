@@ -66,18 +66,20 @@ if ( id != '' & id != null ) {
 			'<p>Sorry! This chapter has not been released or does not exist.</p>';
 	});
 
-	// Convert number to integer
-	var prevID = getParameter('prev');
-	var nextID = getParameter('next');
+	// Convert ID to integer
+	intID = parseInt(id);
 
 	// Generate previous chapter link if the user is at least on chapter number 2
-	if ( id !== 0 ) 
-		document.querySelector('#nav-prev').href = '/freedom/story/chapter?id=' + ( id - 1 );
-	else 
+	if ( intID > 1 ) {
+		var prevID = intID--;
+		document.querySelector('#nav-prev').href = '/freedom/story/chapter?id=' + prevID;
+	} else {
 		document.querySelector('#nav-prev').classList.add('disabled');
+	}
 
 	// Generate next chapter link
-	document.querySelector('#nav-next').href = '/freedom/story/chapter?id=' + ( id + 1 );
+	var nextID = intID++;
+	document.querySelector('#nav-next').href = '/freedom/story/chapter?id=' + prevID;
 
 } else {
 	document.querySelector('#main').innerHTML = 
