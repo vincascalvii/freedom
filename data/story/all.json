@@ -1,26 +1,18 @@
 [
     {
         "id": 1,
-        "title": "Second Chance"
+        "title": "A New Beginning"
     },
     {
         "id": 2,
-        "title": "Fateful Encounter"
+        "title": "You Are Not Alone"
     },
     {
         "id": 3,
-        "title": "Sentinel Trial"
+        "title": "History Lesson"
     },
     {
         "id": 4,
-        "title": "First Mission"
-    },
-    {
-        "id": 5,
-        "title": "Nothing Changed"
-    },
-    {
-        "id": 6,
-        "title": "Not The End"
+        "title": "The Third Order"
     }
 ]
